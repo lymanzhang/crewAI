@@ -32,6 +32,10 @@ from crewai.utilities.events.flow_events import (
     MethodExecutionFinishedEvent,
     MethodExecutionStartedEvent,
 )
+from crewai.utilities.events.listeners.tracing.trace_listener import (
+    TraceCollectionListener,
+)
+from crewai.utilities.events.listeners.tracing.utils import is_tracing_enabled
 from crewai.utilities.printer import Printer
 
 logger = logging.getLogger(__name__)
@@ -437,6 +441,7 @@ class Flow(Generic[T], metaclass=FlowMeta):
     _router_paths: Dict[str, List[str]] = {}
     initial_state: Union[Type[T], T, None] = None
     name: Optional[str] = None
+    tracing: Optional[bool] = False
 
     def __class_getitem__(cls: Type["Flow"], item: Type[T]) -> Type["Flow"]:
         class _FlowGeneric(cls):  # type: ignore
@@ -448,6 +453,7 @@ class Flow(Generic[T], metaclass=FlowMeta):
     def __init__(
         self,
         persistence: Optional[FlowPersistence] = None,
+        tracing: Optional[bool] = False,
         **kwargs: Any,
     ) -> None:
         """Initialize a new Flow instance.
@@ -465,7 +471,10 @@ class Flow(Generic[T], metaclass=FlowMeta):
 
         # Initialize state with initial values
         self._state = self._create_initial_state()
-
+        self.tracing = tracing
+        if is_tracing_enabled() or tracing:
+            trace_listener = TraceCollectionListener(tracing=tracing)
+            trace_listener.setup_listeners(crewai_event_bus)
         # Apply any additional kwargs
         if kwargs:
             self._initialize_state(kwargs)
