@@ -61,7 +61,9 @@
             "groups": [
               {
                 "group": "Welcome",
-                "pages": ["index"]
+                "pages": [
+                  "index"
+                ]
               }
             ]
           },
@@ -71,7 +73,11 @@
             "groups": [
               {
                 "group": "Get Started",
-                "pages": ["en/introduction", "en/installation", "en/quickstart"]
+                "pages": [
+                  "en/introduction",
+                  "en/installation",
+                  "en/quickstart"
+                ]
               },
               {
                 "group": "Guides",
@@ -79,17 +85,23 @@
                   {
                     "group": "Strategy",
                     "icon": "compass",
-                    "pages": ["en/guides/concepts/evaluating-use-cases"]
+                    "pages": [
+                      "en/guides/concepts/evaluating-use-cases"
+                    ]
                   },
                   {
                     "group": "Agents",
                     "icon": "user",
-                    "pages": ["en/guides/agents/crafting-effective-agents"]
+                    "pages": [
+                      "en/guides/agents/crafting-effective-agents"
+                    ]
                   },
                   {
                     "group": "Crews",
                     "icon": "users",
-                    "pages": ["en/guides/crews/first-crew"]
+                    "pages": [
+                      "en/guides/crews/first-crew"
+                    ]
                   },
                   {
                     "group": "Flows",
@@ -116,6 +128,7 @@
                   "en/concepts/tasks",
                   "en/concepts/crews",
                   "en/concepts/flows",
+                  "en/concepts/production-architecture",
                   "en/concepts/knowledge",
                   "en/concepts/llms",
                   "en/concepts/processes",
@@ -134,6 +147,7 @@
                 "group": "MCP Integration",
                 "pages": [
                   "en/mcp/overview",
+                  "en/mcp/dsl-integration",
                   "en/mcp/stdio",
                   "en/mcp/sse",
                   "en/mcp/streamable-http",
@@ -252,7 +266,8 @@
                     "pages": [
                       "en/tools/integration/overview",
                       "en/tools/integration/bedrockinvokeagenttool",
-                      "en/tools/integration/crewaiautomationtool"
+                      "en/tools/integration/crewaiautomationtool",
+                      "en/tools/integration/mergeagenthandlertool"
                     ]
                   },
                   {
@@ -275,6 +290,8 @@
                   "en/observability/overview",
                   "en/observability/arize-phoenix",
                   "en/observability/braintrust",
+                  "en/observability/datadog",
+                  "en/observability/galileo",
                   "en/observability/langdb",
                   "en/observability/langfuse",
                   "en/observability/langtrace",
@@ -305,18 +322,24 @@
                   "en/learn/hierarchical-process",
                   "en/learn/human-input-on-execution",
                   "en/learn/human-in-the-loop",
+                  "en/learn/human-feedback-in-flows",
                   "en/learn/kickoff-async",
                   "en/learn/kickoff-for-each",
                   "en/learn/llm-connections",
                   "en/learn/multimodal-agents",
                   "en/learn/replay-tasks-from-latest-crew-kickoff",
                   "en/learn/sequential-process",
-                  "en/learn/using-annotations"
+                  "en/learn/using-annotations",
+                  "en/learn/execution-hooks",
+                  "en/learn/llm-hooks",
+                  "en/learn/tool-hooks"
                 ]
               },
               {
                 "group": "Telemetry",
-                "pages": ["en/telemetry"]
+                "pages": [
+                  "en/telemetry"
+                ]
               }
             ]
           },
@@ -326,7 +349,9 @@
             "groups": [
               {
                 "group": "Getting Started",
-                "pages": ["en/enterprise/introduction"]
+                "pages": [
+                  "en/enterprise/introduction"
+                ]
               },
               {
                 "group": "Build",
@@ -335,7 +360,8 @@
                   "en/enterprise/features/crew-studio",
                   "en/enterprise/features/marketplace",
                   "en/enterprise/features/agent-repositories",
-                  "en/enterprise/features/tools-and-integrations"
+                  "en/enterprise/features/tools-and-integrations",
+                  "en/enterprise/features/pii-trace-redactions"
                 ]
               },
               {
@@ -361,10 +387,20 @@
                   "en/enterprise/integrations/github",
                   "en/enterprise/integrations/gmail",
                   "en/enterprise/integrations/google_calendar",
+                  "en/enterprise/integrations/google_contacts",
+                  "en/enterprise/integrations/google_docs",
+                  "en/enterprise/integrations/google_drive",
                   "en/enterprise/integrations/google_sheets",
+                  "en/enterprise/integrations/google_slides",
                   "en/enterprise/integrations/hubspot",
                   "en/enterprise/integrations/jira",
                   "en/enterprise/integrations/linear",
+                  "en/enterprise/integrations/microsoft_excel",
+                  "en/enterprise/integrations/microsoft_onedrive",
+                  "en/enterprise/integrations/microsoft_outlook",
+                  "en/enterprise/integrations/microsoft_sharepoint",
+                  "en/enterprise/integrations/microsoft_teams",
+                  "en/enterprise/integrations/microsoft_word",
                   "en/enterprise/integrations/notion",
                   "en/enterprise/integrations/salesforce",
                   "en/enterprise/integrations/shopify",
@@ -393,10 +429,12 @@
                 "group": "How-To Guides",
                 "pages": [
                   "en/enterprise/guides/build-crew",
-                  "en/enterprise/guides/deploy-crew",
+                  "en/enterprise/guides/prepare-for-deployment",
+                  "en/enterprise/guides/deploy-to-amp",
                   "en/enterprise/guides/kickoff-crew",
                   "en/enterprise/guides/update-crew",
                   "en/enterprise/guides/enable-crew-studio",
+                  "en/enterprise/guides/capture_telemetry_logs",
                   "en/enterprise/guides/azure-openai-setup",
                   "en/enterprise/guides/tool-repository",
                   "en/enterprise/guides/react-component-export",
@@ -407,7 +445,9 @@
               },
               {
                 "group": "Resources",
-                "pages": ["en/enterprise/resources/frequently-asked-questions"]
+                "pages": [
+                  "en/enterprise/resources/frequently-asked-questions"
+                ]
               }
             ]
           },
@@ -421,6 +461,7 @@
                   "en/api-reference/introduction",
                   "en/api-reference/inputs",
                   "en/api-reference/kickoff",
+                  "en/api-reference/resume",
                   "en/api-reference/status"
                 ]
               }
@@ -432,7 +473,10 @@
             "groups": [
               {
                 "group": "Examples",
-                "pages": ["en/examples/example", "en/examples/cookbooks"]
+                "pages": [
+                  "en/examples/example",
+                  "en/examples/cookbooks"
+                ]
               }
             ]
           },
@@ -442,7 +486,9 @@
             "groups": [
               {
                 "group": "Release Notes",
-                "pages": ["en/changelog"]
+                "pages": [
+                  "en/changelog"
+                ]
               }
             ]
           }
@@ -481,7 +527,9 @@
             "groups": [
               {
                 "group": "Bem-vindo",
-                "pages": ["pt-BR/index"]
+                "pages": [
+                  "pt-BR/index"
+                ]
               }
             ]
           },
@@ -503,17 +551,23 @@
                   {
                     "group": "Estratégia",
                     "icon": "compass",
-                    "pages": ["pt-BR/guides/concepts/evaluating-use-cases"]
+                    "pages": [
+                      "pt-BR/guides/concepts/evaluating-use-cases"
+                    ]
                   },
                   {
                     "group": "Agentes",
                     "icon": "user",
-                    "pages": ["pt-BR/guides/agents/crafting-effective-agents"]
+                    "pages": [
+                      "pt-BR/guides/agents/crafting-effective-agents"
+                    ]
                   },
                   {
                     "group": "Crews",
                     "icon": "users",
-                    "pages": ["pt-BR/guides/crews/first-crew"]
+                    "pages": [
+                      "pt-BR/guides/crews/first-crew"
+                    ]
                   },
                   {
                     "group": "Flows",
@@ -540,6 +594,7 @@
                   "pt-BR/concepts/tasks",
                   "pt-BR/concepts/crews",
                   "pt-BR/concepts/flows",
+                  "pt-BR/concepts/production-architecture",
                   "pt-BR/concepts/knowledge",
                   "pt-BR/concepts/llms",
                   "pt-BR/concepts/processes",
@@ -558,6 +613,7 @@
                 "group": "Integração MCP",
                 "pages": [
                   "pt-BR/mcp/overview",
+                  "pt-BR/mcp/dsl-integration",
                   "pt-BR/mcp/stdio",
                   "pt-BR/mcp/sse",
                   "pt-BR/mcp/streamable-http",
@@ -683,9 +739,12 @@
               {
                 "group": "Observabilidade",
                 "pages": [
+                  "pt-BR/observability/tracing",
                   "pt-BR/observability/overview",
                   "pt-BR/observability/arize-phoenix",
                   "pt-BR/observability/braintrust",
+                  "pt-BR/observability/datadog",
+                  "pt-BR/observability/galileo",
                   "pt-BR/observability/langdb",
                   "pt-BR/observability/langfuse",
                   "pt-BR/observability/langtrace",
@@ -715,18 +774,24 @@
                   "pt-BR/learn/hierarchical-process",
                   "pt-BR/learn/human-input-on-execution",
                   "pt-BR/learn/human-in-the-loop",
+                  "pt-BR/learn/human-feedback-in-flows",
                   "pt-BR/learn/kickoff-async",
                   "pt-BR/learn/kickoff-for-each",
                   "pt-BR/learn/llm-connections",
                   "pt-BR/learn/multimodal-agents",
                   "pt-BR/learn/replay-tasks-from-latest-crew-kickoff",
                   "pt-BR/learn/sequential-process",
-                  "pt-BR/learn/using-annotations"
+                  "pt-BR/learn/using-annotations",
+                  "pt-BR/learn/execution-hooks",
+                  "pt-BR/learn/llm-hooks",
+                  "pt-BR/learn/tool-hooks"
                 ]
               },
               {
                 "group": "Telemetria",
-                "pages": ["pt-BR/telemetry"]
+                "pages": [
+                  "pt-BR/telemetry"
+                ]
               }
             ]
           },
@@ -736,7 +801,9 @@
             "groups": [
               {
                 "group": "Começando",
-                "pages": ["pt-BR/enterprise/introduction"]
+                "pages": [
+                  "pt-BR/enterprise/introduction"
+                ]
               },
               {
                 "group": "Construir",
@@ -745,7 +812,8 @@
                   "pt-BR/enterprise/features/crew-studio",
                   "pt-BR/enterprise/features/marketplace",
                   "pt-BR/enterprise/features/agent-repositories",
-                  "pt-BR/enterprise/features/tools-and-integrations"
+                  "pt-BR/enterprise/features/tools-and-integrations",
+                  "pt-BR/enterprise/features/pii-trace-redactions"
                 ]
               },
               {
@@ -771,10 +839,20 @@
                   "pt-BR/enterprise/integrations/github",
                   "pt-BR/enterprise/integrations/gmail",
                   "pt-BR/enterprise/integrations/google_calendar",
+                  "pt-BR/enterprise/integrations/google_contacts",
+                  "pt-BR/enterprise/integrations/google_docs",
+                  "pt-BR/enterprise/integrations/google_drive",
                   "pt-BR/enterprise/integrations/google_sheets",
+                  "pt-BR/enterprise/integrations/google_slides",
                   "pt-BR/enterprise/integrations/hubspot",
                   "pt-BR/enterprise/integrations/jira",
                   "pt-BR/enterprise/integrations/linear",
+                  "pt-BR/enterprise/integrations/microsoft_excel",
+                  "pt-BR/enterprise/integrations/microsoft_onedrive",
+                  "pt-BR/enterprise/integrations/microsoft_outlook",
+                  "pt-BR/enterprise/integrations/microsoft_sharepoint",
+                  "pt-BR/enterprise/integrations/microsoft_teams",
+                  "pt-BR/enterprise/integrations/microsoft_word",
                   "pt-BR/enterprise/integrations/notion",
                   "pt-BR/enterprise/integrations/salesforce",
                   "pt-BR/enterprise/integrations/shopify",
@@ -787,7 +865,8 @@
                 "group": "Guias",
                 "pages": [
                   "pt-BR/enterprise/guides/build-crew",
-                  "pt-BR/enterprise/guides/deploy-crew",
+                  "pt-BR/enterprise/guides/prepare-for-deployment",
+                  "pt-BR/enterprise/guides/deploy-to-amp",
                   "pt-BR/enterprise/guides/kickoff-crew",
                   "pt-BR/enterprise/guides/update-crew",
                   "pt-BR/enterprise/guides/enable-crew-studio",
@@ -803,6 +882,12 @@
                 "group": "Triggers",
                 "pages": [
                   "pt-BR/enterprise/guides/automation-triggers",
+                  "pt-BR/enterprise/guides/gmail-trigger",
+                  "pt-BR/enterprise/guides/google-calendar-trigger",
+                  "pt-BR/enterprise/guides/google-drive-trigger",
+                  "pt-BR/enterprise/guides/outlook-trigger",
+                  "pt-BR/enterprise/guides/onedrive-trigger",
+                  "pt-BR/enterprise/guides/microsoft-teams-trigger",
                   "pt-BR/enterprise/guides/slack-trigger",
                   "pt-BR/enterprise/guides/hubspot-trigger",
                   "pt-BR/enterprise/guides/salesforce-trigger",
@@ -827,6 +912,7 @@
                   "pt-BR/api-reference/introduction",
                   "pt-BR/api-reference/inputs",
                   "pt-BR/api-reference/kickoff",
+                  "pt-BR/api-reference/resume",
                   "pt-BR/api-reference/status"
                 ]
               }
@@ -838,7 +924,10 @@
             "groups": [
               {
                 "group": "Exemplos",
-                "pages": ["pt-BR/examples/example", "pt-BR/examples/cookbooks"]
+                "pages": [
+                  "pt-BR/examples/example",
+                  "pt-BR/examples/cookbooks"
+                ]
               }
             ]
           },
@@ -848,7 +937,9 @@
             "groups": [
               {
                 "group": "Notas de Versão",
-                "pages": ["pt-BR/changelog"]
+                "pages": [
+                  "pt-BR/changelog"
+                ]
               }
             ]
           }
@@ -887,7 +978,9 @@
             "groups": [
               {
                 "group": "환영합니다",
-                "pages": ["ko/index"]
+                "pages": [
+                  "ko/index"
+                ]
               }
             ]
           },
@@ -897,7 +990,11 @@
             "groups": [
               {
                 "group": "시작 안내",
-                "pages": ["ko/introduction", "ko/installation", "ko/quickstart"]
+                "pages": [
+                  "ko/introduction",
+                  "ko/installation",
+                  "ko/quickstart"
+                ]
               },
               {
                 "group": "가이드",
@@ -905,17 +1002,23 @@
                   {
                     "group": "전략",
                     "icon": "compass",
-                    "pages": ["ko/guides/concepts/evaluating-use-cases"]
+                    "pages": [
+                      "ko/guides/concepts/evaluating-use-cases"
+                    ]
                   },
                   {
                     "group": "에이전트 (Agents)",
                     "icon": "user",
-                    "pages": ["ko/guides/agents/crafting-effective-agents"]
+                    "pages": [
+                      "ko/guides/agents/crafting-effective-agents"
+                    ]
                   },
                   {
                     "group": "크루 (Crews)",
                     "icon": "users",
-                    "pages": ["ko/guides/crews/first-crew"]
+                    "pages": [
+                      "ko/guides/crews/first-crew"
+                    ]
                   },
                   {
                     "group": "플로우 (Flows)",
@@ -942,6 +1045,7 @@
                   "ko/concepts/tasks",
                   "ko/concepts/crews",
                   "ko/concepts/flows",
+                  "ko/concepts/production-architecture",
                   "ko/concepts/knowledge",
                   "ko/concepts/llms",
                   "ko/concepts/processes",
@@ -960,6 +1064,7 @@
                 "group": "MCP 통합",
                 "pages": [
                   "ko/mcp/overview",
+                  "ko/mcp/dsl-integration",
                   "ko/mcp/stdio",
                   "ko/mcp/sse",
                   "ko/mcp/streamable-http",
@@ -1097,9 +1202,12 @@
               {
                 "group": "Observability",
                 "pages": [
+                  "ko/observability/tracing",
                   "ko/observability/overview",
                   "ko/observability/arize-phoenix",
                   "ko/observability/braintrust",
+                  "ko/observability/datadog",
+                  "ko/observability/galileo",
                   "ko/observability/langdb",
                   "ko/observability/langfuse",
                   "ko/observability/langtrace",
@@ -1129,18 +1237,24 @@
                   "ko/learn/hierarchical-process",
                   "ko/learn/human-input-on-execution",
                   "ko/learn/human-in-the-loop",
+                  "ko/learn/human-feedback-in-flows",
                   "ko/learn/kickoff-async",
                   "ko/learn/kickoff-for-each",
                   "ko/learn/llm-connections",
                   "ko/learn/multimodal-agents",
                   "ko/learn/replay-tasks-from-latest-crew-kickoff",
                   "ko/learn/sequential-process",
-                  "ko/learn/using-annotations"
+                  "ko/learn/using-annotations",
+                  "ko/learn/execution-hooks",
+                  "ko/learn/llm-hooks",
+                  "ko/learn/tool-hooks"
                 ]
               },
               {
                 "group": "Telemetry",
-                "pages": ["ko/telemetry"]
+                "pages": [
+                  "ko/telemetry"
+                ]
               }
             ]
           },
@@ -1150,7 +1264,9 @@
             "groups": [
               {
                 "group": "시작 안내",
-                "pages": ["ko/enterprise/introduction"]
+                "pages": [
+                  "ko/enterprise/introduction"
+                ]
               },
               {
                 "group": "빌드",
@@ -1159,7 +1275,8 @@
                   "ko/enterprise/features/crew-studio",
                   "ko/enterprise/features/marketplace",
                   "ko/enterprise/features/agent-repositories",
-                  "ko/enterprise/features/tools-and-integrations"
+                  "ko/enterprise/features/tools-and-integrations",
+                  "ko/enterprise/features/pii-trace-redactions"
                 ]
               },
               {
@@ -1185,10 +1302,20 @@
                   "ko/enterprise/integrations/github",
                   "ko/enterprise/integrations/gmail",
                   "ko/enterprise/integrations/google_calendar",
+                  "ko/enterprise/integrations/google_contacts",
+                  "ko/enterprise/integrations/google_docs",
+                  "ko/enterprise/integrations/google_drive",
                   "ko/enterprise/integrations/google_sheets",
+                  "ko/enterprise/integrations/google_slides",
                   "ko/enterprise/integrations/hubspot",
                   "ko/enterprise/integrations/jira",
                   "ko/enterprise/integrations/linear",
+                  "ko/enterprise/integrations/microsoft_excel",
+                  "ko/enterprise/integrations/microsoft_onedrive",
+                  "ko/enterprise/integrations/microsoft_outlook",
+                  "ko/enterprise/integrations/microsoft_sharepoint",
+                  "ko/enterprise/integrations/microsoft_teams",
+                  "ko/enterprise/integrations/microsoft_word",
                   "ko/enterprise/integrations/notion",
                   "ko/enterprise/integrations/salesforce",
                   "ko/enterprise/integrations/shopify",
@@ -1201,7 +1328,8 @@
                 "group": "How-To Guides",
                 "pages": [
                   "ko/enterprise/guides/build-crew",
-                  "ko/enterprise/guides/deploy-crew",
+                  "ko/enterprise/guides/prepare-for-deployment",
+                  "ko/enterprise/guides/deploy-to-amp",
                   "ko/enterprise/guides/kickoff-crew",
                   "ko/enterprise/guides/update-crew",
                   "ko/enterprise/guides/enable-crew-studio",
@@ -1217,6 +1345,12 @@
                 "group": "트리거",
                 "pages": [
                   "ko/enterprise/guides/automation-triggers",
+                  "ko/enterprise/guides/gmail-trigger",
+                  "ko/enterprise/guides/google-calendar-trigger",
+                  "ko/enterprise/guides/google-drive-trigger",
+                  "ko/enterprise/guides/outlook-trigger",
+                  "ko/enterprise/guides/onedrive-trigger",
+                  "ko/enterprise/guides/microsoft-teams-trigger",
                   "ko/enterprise/guides/slack-trigger",
                   "ko/enterprise/guides/hubspot-trigger",
                   "ko/enterprise/guides/salesforce-trigger",
@@ -1225,7 +1359,9 @@
               },
               {
                 "group": "학습 자원",
-                "pages": ["ko/enterprise/resources/frequently-asked-questions"]
+                "pages": [
+                  "ko/enterprise/resources/frequently-asked-questions"
+                ]
               }
             ]
           },
@@ -1239,6 +1375,7 @@
                   "ko/api-reference/introduction",
                   "ko/api-reference/inputs",
                   "ko/api-reference/kickoff",
+                  "ko/api-reference/resume",
                   "ko/api-reference/status"
                 ]
               }
@@ -1250,7 +1387,10 @@
             "groups": [
               {
                 "group": "예시",
-                "pages": ["ko/examples/example", "ko/examples/cookbooks"]
+                "pages": [
+                  "ko/examples/example",
+                  "ko/examples/cookbooks"
+                ]
               }
             ]
           },
@@ -1260,7 +1400,9 @@
             "groups": [
               {
                 "group": "릴리스 노트",
-                "pages": ["ko/changelog"]
+                "pages": [
+                  "ko/changelog"
+                ]
               }
             ]
           }
@@ -1374,6 +1516,18 @@
     {
       "source": "/enterprise/:path*",
       "destination": "/en/enterprise/:path*"
+    },
+    {
+      "source": "/en/enterprise/guides/deploy-crew",
+      "destination": "/en/enterprise/guides/deploy-to-amp"
+    },
+    {
+      "source": "/ko/enterprise/guides/deploy-crew",
+      "destination": "/ko/enterprise/guides/deploy-to-amp"
+    },
+    {
+      "source": "/pt-BR/enterprise/guides/deploy-crew",
+      "destination": "/pt-BR/enterprise/guides/deploy-to-amp"
     },
     {
       "source": "/api-reference/:path*",

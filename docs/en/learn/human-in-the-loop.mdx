@@ -5,9 +5,22 @@ icon: "user-check"
 mode: "wide"
 ---
 
-Human-in-the-Loop (HITL) is a powerful approach that combines artificial intelligence with human expertise to enhance decision-making and improve task outcomes. This guide shows you how to implement HITL within CrewAI.
+Human-in-the-Loop (HITL) is a powerful approach that combines artificial intelligence with human expertise to enhance decision-making and improve task outcomes. CrewAI provides multiple ways to implement HITL depending on your needs.
 
-## Setting Up HITL Workflows
+## Choosing Your HITL Approach
+
+CrewAI offers two main approaches for implementing human-in-the-loop workflows:
+
+| Approach | Best For | Integration | Version |
+|----------|----------|-------------|---------|
+| **Flow-based** (`@human_feedback` decorator) | Local development, console-based review, synchronous workflows | [Human Feedback in Flows](/en/learn/human-feedback-in-flows) | **1.8.0+** |
+| **Webhook-based** (Enterprise) | Production deployments, async workflows, external integrations (Slack, Teams, etc.) | This guide | - |
+
+<Tip>
+If you're building flows and want to add human review steps with routing based on feedback, check out the [Human Feedback in Flows](/en/learn/human-feedback-in-flows) guide for the `@human_feedback` decorator.
+</Tip>
+
+## Setting Up Webhook-Based HITL Workflows
 
 <Steps>
     <Step title="Configure Your Task">
@@ -79,6 +92,28 @@ Human-in-the-Loop (HITL) is a powerful approach that combines artificial intelli
         <Frame>
             <img src="/images/enterprise/crew-resume-endpoint.png" alt="Crew Resume Endpoint" />
         </Frame>
+
+        <Warning>
+            **Critical: Webhook URLs Must Be Provided Again**:
+            You **must** provide the same webhook URLs (`taskWebhookUrl`, `stepWebhookUrl`, `crewWebhookUrl`) in the resume call that you used in the kickoff call. Webhook configurations are **NOT** automatically carried over from kickoff - they must be explicitly included in the resume request to continue receiving notifications for task completion, agent steps, and crew completion.
+        </Warning>
+
+        Example resume call with webhooks:
+        ```bash
+        curl -X POST {BASE_URL}/resume \
+          -H "Authorization: Bearer YOUR_API_TOKEN" \
+          -H "Content-Type: application/json" \
+          -d '{
+            "execution_id": "abcd1234-5678-90ef-ghij-klmnopqrstuv",
+            "task_id": "research_task",
+            "human_feedback": "Great work! Please add more details.",
+            "is_approve": true,
+            "taskWebhookUrl": "https://your-server.com/webhooks/task",
+            "stepWebhookUrl": "https://your-server.com/webhooks/step",
+            "crewWebhookUrl": "https://your-server.com/webhooks/crew"
+          }'
+        ```
+
         <Warning>
             **Feedback Impact on Task Execution**:
             It's crucial to exercise care when providing feedback, as the entire feedback content will be incorporated as additional context for further task executions.

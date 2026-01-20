@@ -5,9 +5,22 @@ icon: "user-check"
 mode: "wide"
 ---
 
-휴먼 인 더 루프(HITL, Human-in-the-Loop)는 인공지능과 인간의 전문 지식을 결합하여 의사결정을 강화하고 작업 결과를 향상시키는 강력한 접근 방식입니다. 이 가이드에서는 CrewAI 내에서 HITL을 구현하는 방법을 안내합니다.
+휴먼 인 더 루프(HITL, Human-in-the-Loop)는 인공지능과 인간의 전문 지식을 결합하여 의사결정을 강화하고 작업 결과를 향상시키는 강력한 접근 방식입니다. CrewAI는 필요에 따라 HITL을 구현하는 여러 가지 방법을 제공합니다.
 
-## HITL 워크플로우 설정
+## HITL 접근 방식 선택
+
+CrewAI는 human-in-the-loop 워크플로우를 구현하기 위한 두 가지 주요 접근 방식을 제공합니다:
+
+| 접근 방식 | 적합한 용도 | 통합 | 버전 |
+|----------|----------|-------------|---------|
+| **Flow 기반** (`@human_feedback` 데코레이터) | 로컬 개발, 콘솔 기반 검토, 동기식 워크플로우 | [Flow에서 인간 피드백](/ko/learn/human-feedback-in-flows) | **1.8.0+** |
+| **Webhook 기반** (Enterprise) | 프로덕션 배포, 비동기 워크플로우, 외부 통합 (Slack, Teams 등) | 이 가이드 | - |
+
+<Tip>
+Flow를 구축하면서 피드백을 기반으로 라우팅하는 인간 검토 단계를 추가하려면 `@human_feedback` 데코레이터에 대한 [Flow에서 인간 피드백](/ko/learn/human-feedback-in-flows) 가이드를 참조하세요.
+</Tip>
+
+## Webhook 기반 HITL 워크플로우 설정
 
 <Steps>
     <Step title="작업 구성">
@@ -40,6 +53,28 @@ mode: "wide"
         <Frame>
             <img src="/images/enterprise/crew-resume-endpoint.png" alt="Crew Resume Endpoint" />
         </Frame>
+
+        <Warning>
+            **중요: Webhook URL을 다시 제공해야 합니다**:
+            kickoff 호출에서 사용한 것과 동일한 webhook URL(`taskWebhookUrl`, `stepWebhookUrl`, `crewWebhookUrl`)을 resume 호출에서 **반드시** 제공해야 합니다. Webhook 설정은 kickoff에서 자동으로 전달되지 **않으므로**, 작업 완료, 에이전트 단계, crew 완료에 대한 알림을 계속 받으려면 resume 요청에 명시적으로 포함해야 합니다.
+        </Warning>
+
+        Webhook을 포함한 resume 호출 예시:
+        ```bash
+        curl -X POST {BASE_URL}/resume \
+          -H "Authorization: Bearer YOUR_API_TOKEN" \
+          -H "Content-Type: application/json" \
+          -d '{
+            "execution_id": "abcd1234-5678-90ef-ghij-klmnopqrstuv",
+            "task_id": "research_task",
+            "human_feedback": "훌륭한 작업입니다! 더 자세한 내용을 추가해주세요.",
+            "is_approve": true,
+            "taskWebhookUrl": "https://your-server.com/webhooks/task",
+            "stepWebhookUrl": "https://your-server.com/webhooks/step",
+            "crewWebhookUrl": "https://your-server.com/webhooks/crew"
+          }'
+        ```
+
         <Warning>
             **피드백이 작업 실행에 미치는 영향**:
             피드백의 전체 내용이 추가 컨텍스트로서 이후 작업 실행에 통합되므로, 피드백 제공 시 신중을 기하는 것이 매우 중요합니다.

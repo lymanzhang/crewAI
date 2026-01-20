@@ -25,7 +25,7 @@ Antes de usar a integração com o Google Calendar, certifique-se de ter:
 2. Encontre **Google Calendar** na seção de Integrações de Autenticação
 3. Clique em **Conectar** e complete o fluxo OAuth
 4. Conceda as permissões necessárias para acesso ao calendário e contatos
-5. Copie seu Token Enterprise nas [Configurações da Conta](https://app.crewai.com/crewai_plus/settings/account)
+5. Copie seu Token Enterprise em [Configurações de Integração](https://app.crewai.com/crewai_plus/settings/integrations)
 
 ### 2. Instale o Pacote Necessário
 
@@ -33,10 +33,27 @@ Antes de usar a integração com o Google Calendar, certifique-se de ter:
 uv add crewai-tools
 ```
 
+### 3. Configuração de variável de ambiente
+
+<Note>
+  Para usar integrações com `Agent(apps=[])`, você deve definir a variável de
+  ambiente `CREWAI_PLATFORM_INTEGRATION_TOKEN` com seu Enterprise Token.
+</Note>
+
+```bash
+export CREWAI_PLATFORM_INTEGRATION_TOKEN="seu_enterprise_token"
+```
+
+Ou adicione ao seu arquivo `.env`:
+
+```
+CREWAI_PLATFORM_INTEGRATION_TOKEN=seu_enterprise_token
+```
+
 ## Ações Disponíveis
 
 <AccordionGroup>
-  <Accordion title="GOOGLE_CALENDAR_CREATE_EVENT">
+  <Accordion title="google_calendar/create_event">
     **Descrição:** Cria um evento no Google Calendar.
 
     **Parâmetros:**
@@ -49,9 +66,10 @@ uv add crewai-tools
     - `eventDescription` (string, opcional): Descrição do evento.
     - `eventId` (string, opcional): ID do evento – Um ID da sua aplicação para associar a este evento. Você pode usar esse ID para sincronizar atualizações posteriores neste evento.
     - `includeMeetLink` (boolean, opcional): Incluir link do Google Meet? – Cria automaticamente um link para conferência Google Meet para este evento.
+
   </Accordion>
 
-  <Accordion title="GOOGLE_CALENDAR_UPDATE_EVENT">
+  <Accordion title="google_calendar/update_event">
     **Descrição:** Atualiza um evento existente no Google Calendar.
 
     **Parâmetros:**
@@ -63,34 +81,38 @@ uv add crewai-tools
     - `attendees` (string, opcional): Participantes – Aceita um array de e-mails ou e-mails separados por vírgula.
     - `eventLocation` (string, opcional): Local do evento.
     - `eventDescription` (string, opcional): Descrição do evento.
+
   </Accordion>
 
-  <Accordion title="GOOGLE_CALENDAR_LIST_EVENTS">
+  <Accordion title="google_calendar/view_events">
     **Descrição:** Lista eventos do Google Calendar.
 
     **Parâmetros:**
     - `calendar` (string, opcional): Calendário – Use as Configurações de Workflow do Connect Portal para permitir que o usuário selecione em qual calendário o evento será adicionado. Padrão para o calendário principal do usuário se deixado em branco.
     - `after` (string, opcional): Após – Filtra eventos que começam após a data fornecida (Unix em milissegundos ou timestamp ISO). (exemplo: "2025-04-12T10:00:00Z ou 1712908800000").
     - `before` (string, opcional): Antes – Filtra eventos que terminam antes da data fornecida (Unix em milissegundos ou timestamp ISO). (exemplo: "2025-04-12T10:00:00Z ou 1712908800000").
+
   </Accordion>
 
-  <Accordion title="GOOGLE_CALENDAR_GET_EVENT_BY_ID">
+  <Accordion title="google_calendar/get_event_by_id">
     **Descrição:** Obtém um evento específico pelo ID no Google Calendar.
 
     **Parâmetros:**
     - `eventId` (string, obrigatório): ID do evento.
     - `calendar` (string, opcional): Calendário – Use as Configurações de Workflow do Connect Portal para permitir que o usuário selecione em qual calendário o evento será adicionado. Padrão para o calendário principal do usuário se deixado em branco.
+
   </Accordion>
 
-  <Accordion title="GOOGLE_CALENDAR_DELETE_EVENT">
+  <Accordion title="google_calendar/delete_event">
     **Descrição:** Exclui um evento do Google Calendar.
 
     **Parâmetros:**
     - `eventId` (string, obrigatório): ID do evento – O ID do evento do calendário a ser excluído.
     - `calendar` (string, opcional): Calendário – Use as Configurações de Workflow do Connect Portal para permitir que o usuário selecione em qual calendário o evento será adicionado. Padrão para o calendário principal do usuário se deixado em branco.
+
   </Accordion>
 
-  <Accordion title="GOOGLE_CALENDAR_GET_CONTACTS">
+  <Accordion title="google_calendar/get_contacts">
     **Descrição:** Obtém contatos do Google Calendar.
 
     **Parâmetros:**
@@ -100,16 +122,18 @@ uv add crewai-tools
         "pageCursor": "page_cursor_string"
       }
       ```
+
   </Accordion>
 
-  <Accordion title="GOOGLE_CALENDAR_SEARCH_CONTACTS">
+  <Accordion title="google_calendar/search_contacts">
     **Descrição:** Pesquisa contatos no Google Calendar.
 
     **Parâmetros:**
     - `query` (string, opcional): Termo de pesquisa para buscar contatos.
+
   </Accordion>
 
-  <Accordion title="GOOGLE_CALENDAR_LIST_DIRECTORY_PEOPLE">
+  <Accordion title="google_calendar/list_directory_people">
     **Descrição:** Lista pessoas do diretório.
 
     **Parâmetros:**
@@ -119,9 +143,10 @@ uv add crewai-tools
         "pageCursor": "page_cursor_string"
       }
       ```
+
   </Accordion>
 
-  <Accordion title="GOOGLE_CALENDAR_SEARCH_DIRECTORY_PEOPLE">
+  <Accordion title="google_calendar/search_directory_people">
     **Descrição:** Pesquisa pessoas no diretório.
 
     **Parâmetros:**
@@ -132,9 +157,10 @@ uv add crewai-tools
         "pageCursor": "page_cursor_string"
       }
       ```
+
   </Accordion>
 
-  <Accordion title="GOOGLE_CALENDAR_LIST_OTHER_CONTACTS">
+  <Accordion title="google_calendar/list_other_contacts">
     **Descrição:** Lista outros contatos.
 
     **Parâmetros:**
@@ -144,16 +170,18 @@ uv add crewai-tools
         "pageCursor": "page_cursor_string"
       }
       ```
+
   </Accordion>
 
-  <Accordion title="GOOGLE_CALENDAR_SEARCH_OTHER_CONTACTS">
+  <Accordion title="google_calendar/search_other_contacts">
     **Descrição:** Pesquisa outros contatos.
 
     **Parâmetros:**
     - `query` (string, opcional): Termo de pesquisa para buscar contatos.
+
   </Accordion>
 
-  <Accordion title="GOOGLE_CALENDAR_GET_AVAILABILITY">
+  <Accordion title="google_calendar/get_availability">
     **Descrição:** Obtém informações de disponibilidade para calendários.
 
     **Parâmetros:**
@@ -171,6 +199,7 @@ uv add crewai-tools
         }
       ]
       ```
+
   </Accordion>
 </AccordionGroup>
 
@@ -180,19 +209,15 @@ uv add crewai-tools
 
 ```python
 from crewai import Agent, Task, Crew
-from crewai_tools import CrewaiEnterpriseTools
 
 # Obter ferramentas empresariais (as ferramentas do Google Calendar serão incluídas)
-enterprise_tools = CrewaiEnterpriseTools(
-    enterprise_token="your_enterprise_token"
-)
 
 # Criar um agente com capacidades do Google Calendar
 calendar_agent = Agent(
     role="Schedule Manager",
     goal="Gerenciar eventos de calendário e agendamento de maneira eficiente",
     backstory="Um assistente de IA especializado em gerenciamento de agendas e coordenação de horários.",
-    tools=[enterprise_tools]
+    apps=['google_calendar']
 )
 
 # Tarefa de criação de reunião
@@ -214,19 +239,16 @@ crew.kickoff()
 ### Filtrando Ferramentas Específicas do Calendário
 
 ```python
-from crewai_tools import CrewaiEnterpriseTools
 
 # Obter apenas ferramentas específicas do Google Calendar
-enterprise_tools = CrewaiEnterpriseTools(
-    enterprise_token="your_enterprise_token",
-    actions_list=["google_calendar_create_event", "google_calendar_list_events", "google_calendar_get_availability"]
+    actions_list=["google_calendar/create_event", "google_calendar/view_events", "google_calendar/get_availability"]
 )
 
 meeting_coordinator = Agent(
     role="Meeting Coordinator",
     goal="Coordenar reuniões e verificar disponibilidade",
     backstory="Um assistente de IA que foca em agendamento de reuniões e gerenciamento de disponibilidade.",
-    tools=enterprise_tools
+    apps=['google_calendar']
 )
 
 # Tarefa para agendar reunião com verificação de disponibilidade
@@ -248,17 +270,12 @@ crew.kickoff()
 
 ```python
 from crewai import Agent, Task, Crew
-from crewai_tools import CrewaiEnterpriseTools
-
-enterprise_tools = CrewaiEnterpriseTools(
-    enterprise_token="your_enterprise_token"
-)
 
 event_manager = Agent(
     role="Event Manager",
     goal="Gerenciar e atualizar eventos de calendário de forma eficiente",
     backstory="Um experiente gestor de eventos responsável pela logística e atualizações dos eventos.",
-    tools=[enterprise_tools]
+    apps=['google_calendar']
 )
 
 # Tarefa para gerenciar atualizações de eventos
@@ -284,17 +301,12 @@ crew.kickoff()
 
 ```python
 from crewai import Agent, Task, Crew
-from crewai_tools import CrewaiEnterpriseTools
-
-enterprise_tools = CrewaiEnterpriseTools(
-    enterprise_token="your_enterprise_token"
-)
 
 availability_coordinator = Agent(
     role="Availability Coordinator",
     goal="Coordenar disponibilidade e gerenciar contatos para agendamento",
     backstory="Um assistente de IA que se especializa em gerenciamento de disponibilidade e coordenação de contatos.",
-    tools=[enterprise_tools]
+    apps=['google_calendar']
 )
 
 # Tarefa de coordenação de disponibilidade
@@ -321,17 +333,12 @@ crew.kickoff()
 
 ```python
 from crewai import Agent, Task, Crew
-from crewai_tools import CrewaiEnterpriseTools
-
-enterprise_tools = CrewaiEnterpriseTools(
-    enterprise_token="your_enterprise_token"
-)
 
 scheduling_automator = Agent(
     role="Scheduling Automator",
     goal="Automatizar workflows de agendamento e gerenciamento de calendários",
     backstory="Um assistente de IA que automatiza cenários complexos de agendamento e workflows de agenda.",
-    tools=[enterprise_tools]
+    apps=['google_calendar']
 )
 
 # Tarefa de automação de agendamento complexo
@@ -360,27 +367,32 @@ crew.kickoff()
 ### Problemas Comuns
 
 **Erros de Autenticação**
+
 - Certifique-se de que sua conta Google possui as permissões necessárias para acessar o calendário
 - Verifique se a conexão OAuth inclui todos os escopos necessários para a API do Google Calendar
 - Confirme se as configurações de compartilhamento do calendário permitem o nível de acesso necessário
 
 **Problemas na Criação de Eventos**
+
 - Verifique se os formatos de horário estão corretos (ISO8601 ou timestamps Unix)
 - Assegure-se de que os endereços de e-mail dos participantes estão corretamente formatados
 - Verifique se o calendário de destino existe e está acessível
 - Confirme se os fusos horários estão especificados corretamente
 
 **Disponibilidade e Conflitos de Horário**
+
 - Use formato ISO adequado para os intervalos de horário ao verificar disponibilidade
 - Certifique-se de que os fusos horários estão consistentes em todas as operações
 - Verifique se os IDs dos calendários estão corretos ao consultar múltiplos calendários
 
 **Pesquisa de Contatos e Pessoas**
+
 - Assegure-se de que os termos de pesquisa estão devidamente formatados
 - Verifique se as permissões para acesso ao diretório foram concedidas
 - Certifique-se de que as informações de contato estão atualizadas e acessíveis
 
 **Atualização e Exclusão de Eventos**
+
 - Verifique se os IDs dos eventos estão corretos e se os eventos existem
 - Assegure-se de que você possui permissões de edição para os eventos
 - Verifique se a propriedade do calendário permite modificações
@@ -388,5 +400,6 @@ crew.kickoff()
 ### Obtendo Ajuda
 
 <Card title="Precisa de ajuda?" icon="headset" href="mailto:support@crewai.com">
-  Entre em contato com nosso time de suporte para assistência na configuração da integração com o Google Calendar ou solução de problemas.
+  Entre em contato com nosso time de suporte para assistência na configuração da
+  integração com o Google Calendar ou solução de problemas.
 </Card>

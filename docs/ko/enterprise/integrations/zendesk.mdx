@@ -17,12 +17,45 @@ Zendesk 통합을 사용하기 전에 다음을 확인하세요.
 - 적절한 API 권한이 있는 Zendesk 계정
 - [통합 페이지](https://app.crewai.com/integrations)를 통해 Zendesk 계정 연결
 
+## Zendesk 통합 설정
+
+### 1. Zendesk 계정 연결
+
+1. [CrewAI AMP 통합](https://app.crewai.com/crewai_plus/connectors)으로 이동합니다.
+2. 인증 통합 섹션에서 **Zendesk**를 찾습니다.
+3. **연결**을 클릭하고 OAuth 과정을 완료합니다.
+4. 티켓 및 사용자 관리에 필요한 권한을 부여합니다.
+5. [통합 설정](https://app.crewai.com/crewai_plus/settings/integrations)에서 Enterprise Token을 복사합니다.
+
+### 2. 필수 패키지 설치
+
+```bash
+uv add crewai-tools
+```
+
+### 3. 환경 변수 설정
+
+<Note>
+  `Agent(apps=[])`와 함께 통합을 사용하려면 Enterprise Token으로
+  `CREWAI_PLATFORM_INTEGRATION_TOKEN` 환경 변수를 설정해야 합니다.
+</Note>
+
+```bash
+export CREWAI_PLATFORM_INTEGRATION_TOKEN="your_enterprise_token"
+```
+
+또는 `.env` 파일에 추가하세요:
+
+```
+CREWAI_PLATFORM_INTEGRATION_TOKEN=your_enterprise_token
+```
+
 ## 사용 가능한 도구
 
 ### **티켓 관리**
 
 <AccordionGroup>
-  <Accordion title="ZENDESK_CREATE_TICKET">
+  <Accordion title="zendesk/create_ticket">
     **설명:** Zendesk에 새로운 지원 티켓을 생성합니다.
 
     **매개변수:**
@@ -38,9 +71,10 @@ Zendesk 통합을 사용하기 전에 다음을 확인하세요.
     - `ticketTags` (string, 선택): 적용할 태그 배열 (예: `["enterprise", "other_tag"]`)
     - `ticketExternalId` (string, 선택): 티켓을 로컬 레코드와 연결할 외부 ID
     - `ticketCustomFields` (object, 선택): JSON 형식의 사용자 정의 필드 값
+
   </Accordion>
 
-  <Accordion title="ZENDESK_UPDATE_TICKET">
+  <Accordion title="zendesk/update_ticket">
     **설명:** Zendesk의 기존 지원 티켓을 업데이트합니다.
 
     **매개변수:**
@@ -56,16 +90,18 @@ Zendesk 통합을 사용하기 전에 다음을 확인하세요.
     - `ticketTags` (string, 선택): 업데이트된 태그 배열
     - `ticketExternalId` (string, 선택): 업데이트된 외부 ID
     - `ticketCustomFields` (object, 선택): 업데이트된 사용자 정의 필드 값
+
   </Accordion>
 
-  <Accordion title="ZENDESK_GET_TICKET_BY_ID">
+  <Accordion title="zendesk/get_ticket_by_id">
     **설명:** ID로 특정 티켓을 조회합니다.
 
     **매개변수:**
     - `ticketId` (string, 필수): 조회할 티켓의 ID (예: "35436")
+
   </Accordion>
 
-  <Accordion title="ZENDESK_ADD_COMMENT_TO_TICKET">
+  <Accordion title="zendesk/add_comment_to_ticket">
     **설명:** 기존 티켓에 댓글이나 내부 노트를 추가합니다.
 
     **매개변수:**
@@ -73,9 +109,10 @@ Zendesk 통합을 사용하기 전에 다음을 확인하세요.
     - `commentBody` (string, 필수): 댓글 메시지 (일반 텍스트 또는 HTML 지원, 예: "도움을 주셔서 감사합니다!")
     - `isInternalNote` (boolean, 선택): 공개 답글 대신 내부 노트로 설정하려면 true (기본값: false)
     - `isPublic` (boolean, 선택): 공개 댓글이면 true, 내부 노트이면 false
+
   </Accordion>
 
-  <Accordion title="ZENDESK_SEARCH_TICKETS">
+  <Accordion title="zendesk/search_tickets">
     **설명:** 다양한 필터 및 조건을 사용하여 티켓을 검색합니다.
 
     **매개변수:**
@@ -94,13 +131,14 @@ Zendesk 통합을 사용하기 전에 다음을 확인하세요.
     - `dueDate` (object, 선택): 마감일로 필터링 (연산자와 값)
     - `sort_by` (string, 선택): 정렬 필드 - 옵션: created_at, updated_at, priority, status, ticket_type
     - `sort_order` (string, 선택): 정렬 방향 - 옵션: asc, desc
+
   </Accordion>
 </AccordionGroup>
 
 ### **사용자 관리**
 
 <AccordionGroup>
-  <Accordion title="ZENDESK_CREATE_USER">
+  <Accordion title="zendesk/create_user">
     **설명:** Zendesk에서 새로운 사용자를 생성합니다.
 
     **매개변수:**
@@ -111,9 +149,10 @@ Zendesk 통합을 사용하기 전에 다음을 확인하세요.
     - `externalId` (string, 선택): 다른 시스템의 고유 식별자
     - `details` (string, 선택): 추가 사용자 정보
     - `notes` (string, 선택): 사용자에 대한 내부 메모
+
   </Accordion>
 
-  <Accordion title="ZENDESK_UPDATE_USER">
+  <Accordion title="zendesk/update_user">
     **설명:** 기존 사용자의 정보를 업데이트합니다.
 
     **매개변수:**
@@ -125,16 +164,18 @@ Zendesk 통합을 사용하기 전에 다음을 확인하세요.
     - `externalId` (string, 선택): 업데이트된 외부 ID
     - `details` (string, 선택): 업데이트된 사용자 상세 정보
     - `notes` (string, 선택): 업데이트된 내부 메모
+
   </Accordion>
 
-  <Accordion title="ZENDESK_GET_USER_BY_ID">
+  <Accordion title="zendesk/get_user_by_id">
     **설명:** ID로 특정 사용자를 조회합니다.
 
     **매개변수:**
     - `userId` (string, 필수): 조회할 사용자 ID
+
   </Accordion>
 
-  <Accordion title="ZENDESK_SEARCH_USERS">
+  <Accordion title="zendesk/search_users">
     **설명:** 다양한 기준으로 사용자를 검색합니다.
 
     **매개변수:**
@@ -144,27 +185,30 @@ Zendesk 통합을 사용하기 전에 다음을 확인하세요.
     - `externalId` (string, 선택): 외부 ID로 필터링
     - `sort_by` (string, 선택): 정렬 필드 - 옵션: created_at, updated_at
     - `sort_order` (string, 선택): 정렬 방향 - 옵션: asc, desc
+
   </Accordion>
 </AccordionGroup>
 
 ### **관리 도구**
 
 <AccordionGroup>
-  <Accordion title="ZENDESK_GET_TICKET_FIELDS">
+  <Accordion title="zendesk/get_ticket_fields">
     **설명:** 티켓에 사용할 수 있는 모든 표준 및 맞춤 필드를 검색합니다.
 
     **파라미터:**
     - `paginationParameters` (object, 선택 사항): 페이지네이션 설정
       - `pageCursor` (string, 선택 사항): 페이지네이션을 위한 페이지 커서
+
   </Accordion>
 
-  <Accordion title="ZENDESK_GET_TICKET_AUDITS">
+  <Accordion title="zendesk/get_ticket_audits">
     **설명:** 티켓의 감사 기록(읽기 전용 이력)을 가져옵니다.
 
     **파라미터:**
     - `ticketId` (string, 선택 사항): 특정 티켓의 감사를 조회합니다(비워두면 모든 비보관된 티켓의 감사를 조회, 예: "1234")
     - `paginationParameters` (object, 선택 사항): 페이지네이션 설정
       - `pageCursor` (string, 선택 사항): 페이지네이션을 위한 페이지 커서
+
   </Accordion>
 </AccordionGroup>
 
@@ -205,19 +249,13 @@ Zendesk 통합을 사용하기 전에 다음을 확인하세요.
 
 ```python
 from crewai import Agent, Task, Crew
-from crewai_tools import CrewaiEnterpriseTools
-
-# Get enterprise tools (Zendesk tools will be included)
-enterprise_tools = CrewaiEnterpriseTools(
-    enterprise_token="your_enterprise_token"
-)
 
 # Create an agent with Zendesk capabilities
 zendesk_agent = Agent(
     role="Support Manager",
     goal="Manage customer support tickets and provide excellent customer service",
     backstory="An AI assistant specialized in customer support operations and ticket management.",
-    tools=[enterprise_tools]
+    apps=['zendesk']
 )
 
 # Task to create a new support ticket
@@ -239,19 +277,12 @@ crew.kickoff()
 ### 특정 Zendesk 도구 필터링
 
 ```python
-from crewai_tools import CrewaiEnterpriseTools
-
-# Get only specific Zendesk tools
-enterprise_tools = CrewaiEnterpriseTools(
-    enterprise_token="your_enterprise_token",
-    actions_list=["zendesk_create_ticket", "zendesk_update_ticket", "zendesk_add_comment_to_ticket"]
-)
 
 support_agent = Agent(
     role="Customer Support Agent",
     goal="Handle customer inquiries and resolve support issues efficiently",
     backstory="An experienced support agent who specializes in ticket resolution and customer communication.",
-    tools=enterprise_tools
+    apps=['zendesk']
 )
 
 # Task to manage support workflow
@@ -273,17 +304,12 @@ crew.kickoff()
 
 ```python
 from crewai import Agent, Task, Crew
-from crewai_tools import CrewaiEnterpriseTools
-
-enterprise_tools = CrewaiEnterpriseTools(
-    enterprise_token="your_enterprise_token"
-)
 
 ticket_manager = Agent(
     role="Ticket Manager",
     goal="Manage support ticket workflows and ensure timely resolution",
     backstory="An AI assistant that specializes in support ticket triage and workflow optimization.",
-    tools=[enterprise_tools]
+    apps=['zendesk']
 )
 
 # Task to manage ticket lifecycle
@@ -310,17 +336,12 @@ crew.kickoff()
 
 ```python
 from crewai import Agent, Task, Crew
-from crewai_tools import CrewaiEnterpriseTools
-
-enterprise_tools = CrewaiEnterpriseTools(
-    enterprise_token="your_enterprise_token"
-)
 
 support_analyst = Agent(
     role="Support Analyst",
     goal="Analyze support metrics and generate insights for team performance",
     backstory="An analytical AI that excels at extracting insights from support data and ticket patterns.",
-    tools=[enterprise_tools]
+    apps=['zendesk']
 )
 
 # Complex task involving analytics and reporting

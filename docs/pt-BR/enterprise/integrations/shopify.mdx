@@ -17,12 +17,45 @@ Antes de utilizar a integração com o Shopify, certifique-se de que você possu
 - Uma loja Shopify com permissões administrativas adequadas
 - Sua loja Shopify conectada através da [página de Integrações](https://app.crewai.com/integrations)
 
+## Configurando a Integração Shopify
+
+### 1. Conecte sua Loja Shopify
+
+1. Acesse [CrewAI AMP Integrações](https://app.crewai.com/crewai_plus/connectors)
+2. Encontre **Shopify** na seção Integrações de Autenticação
+3. Clique em **Conectar** e complete o fluxo OAuth
+4. Conceda as permissões necessárias para gerenciamento de loja e produtos
+5. Copie seu Token Enterprise em [Configurações de Integração](https://app.crewai.com/crewai_plus/settings/integrations)
+
+### 2. Instale o Pacote Necessário
+
+```bash
+uv add crewai-tools
+```
+
+### 3. Configuração de variável de ambiente
+
+<Note>
+  Para usar integrações com `Agent(apps=[])`, você deve definir a variável de
+  ambiente `CREWAI_PLATFORM_INTEGRATION_TOKEN` com seu Enterprise Token.
+</Note>
+
+```bash
+export CREWAI_PLATFORM_INTEGRATION_TOKEN="seu_enterprise_token"
+```
+
+Ou adicione ao seu arquivo `.env`:
+
+```
+CREWAI_PLATFORM_INTEGRATION_TOKEN=seu_enterprise_token
+```
+
 ## Ferramentas Disponíveis
 
 ### **Gerenciamento de Clientes**
 
 <AccordionGroup>
-  <Accordion title="SHOPIFY_GET_CUSTOMERS">
+  <Accordion title="shopify/get_customers">
     **Descrição:** Recupera uma lista de clientes da sua loja Shopify.
 
     **Parâmetros:**
@@ -32,17 +65,19 @@ Antes de utilizar a integração com o Shopify, certifique-se de que você possu
     - `updatedAtMin` (string, opcional): Retorna somente clientes atualizados após esta data (ISO ou timestamp Unix)
     - `updatedAtMax` (string, opcional): Retorna somente clientes atualizados antes desta data (ISO ou timestamp Unix)
     - `limit` (string, opcional): Número máximo de clientes a retornar (padrão 250)
+
   </Accordion>
 
-  <Accordion title="SHOPIFY_SEARCH_CUSTOMERS">
+  <Accordion title="shopify/search_customers">
     **Descrição:** Pesquise por clientes usando critérios de filtragem avançados.
 
     **Parâmetros:**
     - `filterFormula` (object, opcional): Filtro avançado em forma normal disjuntiva com operadores específicos de campo
     - `limit` (string, opcional): Número máximo de clientes a retornar (padrão 250)
+
   </Accordion>
 
-  <Accordion title="SHOPIFY_CREATE_CUSTOMER">
+  <Accordion title="shopify/create_customer">
     **Descrição:** Crie um novo cliente em sua loja Shopify.
 
     **Parâmetros:**
@@ -61,9 +96,10 @@ Antes de utilizar a integração com o Shopify, certifique-se de que você possu
     - `note` (string, opcional): Observação sobre o cliente
     - `sendEmailInvite` (boolean, opcional): Se deve enviar convite por e-mail
     - `metafields` (object, opcional): Metacampos adicionais em formato JSON
+
   </Accordion>
 
-  <Accordion title="SHOPIFY_UPDATE_CUSTOMER">
+  <Accordion title="shopify/update_customer">
     **Descrição:** Atualize um cliente existente em sua loja Shopify.
 
     **Parâmetros:**
@@ -83,13 +119,14 @@ Antes de utilizar a integração com o Shopify, certifique-se de que você possu
     - `note` (string, opcional): Observação sobre o cliente
     - `sendEmailInvite` (boolean, opcional): Se deve enviar convite por e-mail
     - `metafields` (object, opcional): Metacampos adicionais em formato JSON
+
   </Accordion>
 </AccordionGroup>
 
 ### **Gestão de Pedidos**
 
 <AccordionGroup>
-  <Accordion title="SHOPIFY_GET_ORDERS">
+  <Accordion title="shopify/get_orders">
     **Descrição:** Recupera uma lista de pedidos da sua loja Shopify.
 
     **Parâmetros:**
@@ -99,9 +136,10 @@ Antes de utilizar a integração com o Shopify, certifique-se de que você possu
     - `updatedAtMin` (string, opcional): Retorna somente pedidos atualizados após esta data (ISO ou timestamp Unix)
     - `updatedAtMax` (string, opcional): Retorna somente pedidos atualizados antes desta data (ISO ou timestamp Unix)
     - `limit` (string, opcional): Número máximo de pedidos a retornar (padrão 250)
+
   </Accordion>
 
-  <Accordion title="SHOPIFY_CREATE_ORDER">
+  <Accordion title="shopify/create_order">
     **Descrição:** Crie um novo pedido em sua loja Shopify.
 
     **Parâmetros:**
@@ -112,9 +150,10 @@ Antes de utilizar a integração com o Shopify, certifique-se de que você possu
     - `financialStatus` (string, opcional): Status financeiro - Opções: pending, authorized, partially_paid, paid, partially_refunded, refunded, voided
     - `inventoryBehaviour` (string, opcional): Comportamento de inventário - Opções: bypass, decrement_ignoring_policy, decrement_obeying_policy
     - `note` (string, opcional): Observação do pedido
+
   </Accordion>
 
-  <Accordion title="SHOPIFY_UPDATE_ORDER">
+  <Accordion title="shopify/update_order">
     **Descrição:** Atualize um pedido existente em sua loja Shopify.
 
     **Parâmetros:**
@@ -126,9 +165,10 @@ Antes de utilizar a integração com o Shopify, certifique-se de que você possu
     - `financialStatus` (string, opcional): Status financeiro - Opções: pending, authorized, partially_paid, paid, partially_refunded, refunded, voided
     - `inventoryBehaviour` (string, opcional): Comportamento de inventário - Opções: bypass, decrement_ignoring_policy, decrement_obeying_policy
     - `note` (string, opcional): Observação do pedido
+
   </Accordion>
 
-  <Accordion title="SHOPIFY_GET_ABANDONED_CARTS">
+  <Accordion title="shopify/get_abandoned_carts">
     **Descrição:** Recupera carrinhos abandonados da sua loja Shopify.
 
     **Parâmetros:**
@@ -138,13 +178,14 @@ Antes de utilizar a integração com o Shopify, certifique-se de que você possu
     - `createdAtMin` (string, opcional): Retorna somente carrinhos criados após esta data (ISO ou timestamp Unix)
     - `createdAtMax` (string, opcional): Retorna somente carrinhos criados antes desta data (ISO ou timestamp Unix)
     - `limit` (string, opcional): Número máximo de carrinhos a retornar (padrão 250)
+
   </Accordion>
 </AccordionGroup>
 
 ### **Gestão de Produtos (REST API)**
 
 <AccordionGroup>
-  <Accordion title="SHOPIFY_GET_PRODUCTS">
+  <Accordion title="shopify/get_products">
     **Descrição:** Recupera uma lista de produtos da sua loja Shopify utilizando a REST API.
 
     **Parâmetros:**
@@ -158,9 +199,10 @@ Antes de utilizar a integração com o Shopify, certifique-se de que você possu
     - `updatedAtMin` (string, opcional): Retorna somente produtos atualizados após esta data (ISO ou timestamp Unix)
     - `updatedAtMax` (string, opcional): Retorna somente produtos atualizados antes desta data (ISO ou timestamp Unix)
     - `limit` (string, opcional): Número máximo de produtos a retornar (padrão 250)
+
   </Accordion>
 
-  <Accordion title="SHOPIFY_CREATE_PRODUCT">
+  <Accordion title="shopify/create_product">
     **Descrição:** Crie um novo produto em sua loja Shopify utilizando a REST API.
 
     **Parâmetros:**
@@ -174,9 +216,10 @@ Antes de utilizar a integração com o Shopify, certifique-se de que você possu
     - `imageUrl` (string, opcional): URL da imagem do produto
     - `isPublished` (boolean, opcional): Se o produto está publicado
     - `publishToPointToSale` (boolean, opcional): Se deve publicar no ponto de venda
+
   </Accordion>
 
-  <Accordion title="SHOPIFY_UPDATE_PRODUCT">
+  <Accordion title="shopify/update_product">
     **Descrição:** Atualize um produto existente em sua loja Shopify utilizando a REST API.
 
     **Parâmetros:**
@@ -191,20 +234,22 @@ Antes de utilizar a integração com o Shopify, certifique-se de que você possu
     - `imageUrl` (string, opcional): URL da imagem do produto
     - `isPublished` (boolean, opcional): Se o produto está publicado
     - `publishToPointToSale` (boolean, opcional): Se deve publicar no ponto de venda
+
   </Accordion>
 </AccordionGroup>
 
 ### **Gestão de Produtos (GraphQL)**
 
 <AccordionGroup>
-  <Accordion title="SHOPIFY_GET_PRODUCTS_GRAPHQL">
+  <Accordion title="shopify/get_products_graphql">
     **Descrição:** Recupere produtos utilizando filtros avançados do GraphQL.
 
     **Parâmetros:**
     - `productFilterFormula` (object, opcional): Filtro avançado em forma normal disjuntiva com suporte a campos como id, title, vendor, status, handle, tag, created_at, updated_at, published_at
+
   </Accordion>
 
-  <Accordion title="SHOPIFY_CREATE_PRODUCT_GRAPHQL">
+  <Accordion title="shopify/create_product_graphql">
     **Descrição:** Crie um novo produto utilizando a API GraphQL com suporte aprimorado a mídias.
 
     **Parâmetros:**
@@ -215,9 +260,10 @@ Antes de utilizar a integração com o Shopify, certifique-se de que você possu
     - `tags` (string, opcional): Tags do produto como array ou lista separada por vírgula
     - `media` (object, opcional): Objetos de mídia com texto alternativo, tipo de conteúdo e URL de origem
     - `additionalFields` (object, opcional): Campos adicionais do produto como status, requiresSellingPlan, giftCard
+
   </Accordion>
 
-  <Accordion title="SHOPIFY_UPDATE_PRODUCT_GRAPHQL">
+  <Accordion title="shopify/update_product_graphql">
     **Descrição:** Atualize um produto existente utilizando a API GraphQL com suporte aprimorado a mídias.
 
     **Parâmetros:**
@@ -229,6 +275,7 @@ Antes de utilizar a integração com o Shopify, certifique-se de que você possu
     - `tags` (string, opcional): Tags do produto como array ou lista separada por vírgula
     - `media` (object, opcional): Objetos de mídia atualizados com texto alternativo, tipo de conteúdo e URL de origem
     - `additionalFields` (object, opcional): Campos adicionais do produto como status, requiresSellingPlan, giftCard
+
   </Accordion>
 </AccordionGroup>
 
@@ -238,19 +285,13 @@ Antes de utilizar a integração com o Shopify, certifique-se de que você possu
 
 ```python
 from crewai import Agent, Task, Crew
-from crewai_tools import CrewaiEnterpriseTools
-
-# Get enterprise tools (Shopify tools will be included)
-enterprise_tools = CrewaiEnterpriseTools(
-    enterprise_token="your_enterprise_token"
-)
 
 # Create an agent with Shopify capabilities
 shopify_agent = Agent(
     role="E-commerce Manager",
     goal="Manage online store operations and customer relationships efficiently",
     backstory="An AI assistant specialized in e-commerce operations and online store management.",
-    tools=[enterprise_tools]
+    apps=['shopify']
 )
 
 # Task to create a new customer
@@ -272,19 +313,12 @@ crew.kickoff()
 ### Filtrando Ferramentas Específicas do Shopify
 
 ```python
-from crewai_tools import CrewaiEnterpriseTools
-
-# Get only specific Shopify tools
-enterprise_tools = CrewaiEnterpriseTools(
-    enterprise_token="your_enterprise_token",
-    actions_list=["shopify_create_customer", "shopify_create_order", "shopify_get_products"]
-)
 
 store_manager = Agent(
     role="Store Manager",
     goal="Manage customer orders and product catalog",
     backstory="An experienced store manager who handles customer relationships and inventory management.",
-    tools=enterprise_tools
+    apps=['shopify']
 )
 
 # Task to manage store operations
@@ -306,17 +340,12 @@ crew.kickoff()
 
 ```python
 from crewai import Agent, Task, Crew
-from crewai_tools import CrewaiEnterpriseTools
-
-enterprise_tools = CrewaiEnterpriseTools(
-    enterprise_token="your_enterprise_token"
-)
 
 product_manager = Agent(
     role="Product Manager",
     goal="Manage product catalog and inventory with advanced GraphQL capabilities",
     backstory="An AI assistant that specializes in product management and catalog optimization.",
-    tools=[enterprise_tools]
+    apps=['shopify']
 )
 
 # Task to manage product catalog
@@ -343,17 +372,12 @@ crew.kickoff()
 
 ```python
 from crewai import Agent, Task, Crew
-from crewai_tools import CrewaiEnterpriseTools
-
-enterprise_tools = CrewaiEnterpriseTools(
-    enterprise_token="your_enterprise_token"
-)
 
 analytics_agent = Agent(
     role="E-commerce Analyst",
     goal="Analyze customer behavior and order patterns to optimize store performance",
     backstory="An analytical AI that excels at extracting insights from e-commerce data.",
-    tools=[enterprise_tools]
+    apps=['shopify']
 )
 
 # Complex task involving multiple operations
@@ -379,5 +403,6 @@ crew.kickoff()
 ### Precisa de Ajuda?
 
 <Card title="Precisa de Ajuda?" icon="headset" href="mailto:support@crewai.com">
-  Entre em contato com nossa equipe de suporte para assistência na configuração ou resolução de problemas de integração com o Shopify.
+  Entre em contato com nossa equipe de suporte para assistência na configuração
+  ou resolução de problemas de integração com o Shopify.
 </Card>
